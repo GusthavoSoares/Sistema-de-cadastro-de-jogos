@@ -1,0 +1,67 @@
+const prompt = require('prompt-sync')();
+var array_jogos = [];
+
+do {
+  console.log("Sistema de Cadastro de Jogos");
+  console.log("1 - Inserir Jogo");
+  console.log("2 - Excluir Jogo");
+  console.log("3 - Listar Jogos");
+  console.log("0 - Sair");
+
+  var opcao = prompt("Digite sua opção: ");
+
+  if (opcao == 1) {
+    console.log("\n\nInserindo Jogo...\n");
+    let codigo = parseInt(prompt("Digite o código: "));
+    let genero = prompt("Digite o gênero: ");
+    let grafico = prompt("Digite o estilo dos gráficos: ");
+    let engine = prompt("Digite a game engine: ");
+    let plataforma = prompt("Digite a plataforma: ");
+
+    
+    const jogo = {
+      codigo: codigo,
+      genero: genero,
+      grafico: grafico,
+      engine: engine,
+      plataforma: plataforma
+    }
+    inserir_jogos(jogo)
+  } else if (opcao == 2) {
+    console.log("\n\nExcluindo jogo...\n");
+    let codigo = prompt("Digite o código do jogo: ");
+    excluir_jogos(codigo)
+  } else if (opcao == 3) {
+    console.log("\n\nListando jogo...\n");
+    listar_jogos();
+  } else {
+    console.log("\n\nSaindo do programa...\n");
+  }
+
+  prompt("\nEnter para continuar...");
+  console.clear();
+} while (opcao != 0)
+
+
+function inserir_jogos(jogo) {
+  array_jogos.push(jogo)
+}
+
+function excluir_jogos(codigo) {
+  for (var i = 0; i < array_jogos.length; i++) {
+    games = array_jogos[i]
+    if (codigo == games.codigo) {
+      array_jogos.shift()
+    }
+  }
+}
+
+function listar_jogos() {
+  for (var i = 0; i < array_jogos.length; i++) {
+    games = array_jogos[i]
+    console.log(games.codigo, ": ", games.genero + " - ", games.grafico, "-", games.engine, " - ", games.plataforma)
+  }
+}
+
+
+
